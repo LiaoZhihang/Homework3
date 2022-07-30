@@ -1,0 +1,61 @@
+#import "Person.h"
+
+(int)amount=0;
+@interface Orders:NSObject
+
+@property(nonatomic,readonly,strong)int num;
+@property(nonatomic,strong)NSDate *date;
+@property(nonatomic,strong)Address *departure;
+@property(nonatomic,strong)Address *destination;
+
+-(instancetype) date:(NSDate *)date departure:(Address *)departure destination:(NSDate *)destination;
+
+@end
+
+@interface Passenger:Person
+
+@property(nonatomic,assign)BOOL isAdult;//是否满18岁
+@property(nonatomic,copy)NSMutableArray *HistoricalOrder;//历史订单
+@property(nonatomic,copy)NSMutableArray *UntravelledOrder;//未出行订单
+
+-(instancetype) is:(BOOL)isAdult HistoricalOrder:(NSMutableArray *)HistoricalOrder UntravelledOrder:(NSMutableArray *)UntravelledOrder;
+-(NSNumber *)bookTicket dep:(Address *)departure des:(Address *)destination;//订票
+-(void)checkTrcket;//检票
+
+@end
+
+@implepentation Order
+-(instancetype) date:(NSDate *)date departure:(Address *)departure destination:(NSDate *)destination
+{
+  if(self =[super init])
+  {
+    self.date=date;
+    self.departure=departure;
+    self.destination=destination;
+  }
+  return self;
+}
+@end
+
+@implepentation Passenger
+-(instancetype) name:(NSString *)name address:(Adress *)address birthday:(NSDate *)birthday is:(BOOL)isadult HistoricalOrder:(NSMutableArray *)HistoricalOrder UntravelledOrder:(NSMutableArray *)UntravelledOrder
+{
+  if(self =[super init])
+  {
+    [self initWithName:name address:address birthday:birthday];
+    self.isAdult=isadult;
+    self.HistoricalOrder=[NSMutableArray array];
+    self.UntravelledOrder=[NSMutableArray array];
+  }
+  return self;
+}
+-(NSNumber *)bookTicket dat (NSDate *)date dep:(Address *)departure des:(Address *)destination
+{
+  [self.UntravelledOrder addObject:(Order)order=[Order date:date departure:departure destination:destination]];
+  self.num=10000000+amount;
+  amount++;
+}
+-(void)checkTrcket
+{
+}
+@end
